@@ -9,7 +9,13 @@ bool isUpper(char c){
 }
 
 int letterCount(std::string str){
-  return str.length();
+    int count=0;
+    for(int i=0;i<str.length();i++){
+      if(IsLower(str[i])||isUpper(str[i])){
+            count++;
+        }
+    }
+  return count;
 }
 std::string toLower(std::string str){
   for(int i=0;i<str.length();i++){
@@ -45,6 +51,7 @@ std::string Substr(std::string str,char s,char e){
 int main() {
   using namespace std;
   cout<<IsLower('d')<<endl;
+  cout<<letterCount("abc;[;[;[;B")<<endl;
   cout<<toLower("DHAb")<<endl;
   cout<<toUpper("bdsahdbsadT")<<endl;
 cout<<Substr("abcdefg", 'c', 'f');
