@@ -37,16 +37,20 @@ std::string toUpper(std::string str){
 std::string Substr(std::string str,char s,char e){
   std::string substring="";
   int startindex=-1;
-  int endindex;
+  int endindex=-1;
   for(int i=0;i<str.length();i++){
     if(str[i]==s){
       startindex=i;
     }
-    if(startindex!=-1 && str[i]==e){
-      return str.substr(startindex, i-1);
+    if(startindex!=-1 ){
+      substring+=str[i];
+      if(str[i]==e){
+        return substring;
+      }
+      
     }
   }
-  return "";
+  return substring;
 }
 int main() {
   using namespace std;
@@ -54,5 +58,5 @@ int main() {
   cout<<letterCount("abc;[;[;[;B")<<endl;
   cout<<toLower("DHAb")<<endl;
   cout<<toUpper("bdsahdbsadT")<<endl;
-cout<<Substr("abcdefg", 'c', 'f');
+cout<<Substr("abcdegdsfadasdasd", 'c', 'f');
 }
