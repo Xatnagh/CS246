@@ -6,7 +6,7 @@
 /*********************************************************
  * Function A 
  * Description: it will find the difference between the highest number and lowest number on the vector
- * Runtime: 2n
+ * Runtime: 3n+3
  *********************************************************/
 int A(ds::Vector<int>& data)
 {
