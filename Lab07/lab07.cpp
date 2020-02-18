@@ -60,34 +60,34 @@ std::string B(int dy)
 /*********************************************************
  * Function C 
  * Description:  check if absolute value of n is greather than 1
- * Runtime:sqrt(n)
+ * Runtime:2sqrt(n)+2
  *********************************************************/
 bool C(int n)
 {
-    int p = (n < 0)?(-1 * n):(n);            
+    int p = (n < 0)?(-1 * n):(n);     //1      
 
-    for(int i = 2;i * i <= p;i += 1)
+    for(int i = 2;i * i <= p;i += 1)   //sqrt(n)+1
     {
-        if(p % 1 != 0)
+        if(p % 1 != 0)   / //sqrt(n)
         {
             return false;  //this is useless code cus (int)%1 will always be 0
         }
     }
-    return (p > 1);
+    return (p > 1); //1
 }
 
 /*********************************************************
  * Function D 
  * Description: populate the data vector with nested for loop of i * j where the limit of i and j is n and they both start at and increment by 1.
- * Runtime:n^2
+ * Runtime:n^2+1
  *********************************************************/
 void D(ds::Vector<int>& data,int n)
 {
-    if(n >= 1)
+    if(n >= 1) //1
     {
-        for(int i = 1;i <= n;i += 1)
+        for(int i = 1;i <= n;i += 1) //n
         {
-            for(int j = 1;j <= n;j += 1)
+            for(int j = 1;j <= n;j += 1) //n
             {
                 data.Insert(i * j);
             }
@@ -102,17 +102,17 @@ void D(ds::Vector<int>& data,int n)
  *********************************************************/
 int E(int n)
 {
-    return (n > 0)?(n * (n + 1) * (2 * n + 1)/6):(0);
+    return (n > 0)?(n * (n + 1) * (2 * n + 1)/6):(0);//1
 }
 
 /*********************************************************
  * Function F
  * Description: it just turns n into a string, if n is less than 0, it will return '0' 
- * Runtime:n
+ * Runtime:n+1
  *********************************************************/
 std::string F(int n)
 {
-    if(n <= 0)
+    if(n <= 0)//1
     {
         return "0";
     }
@@ -120,7 +120,7 @@ std::string F(int n)
     char dc;
     int di;
 
-    while(n > 0)
+    while(n > 0) //n
     {
         di = n % 10;
         dc = (char)('0' + di);
