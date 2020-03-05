@@ -7,9 +7,13 @@
 #include "Vector.h"
 #include <math.h>    
 bool IsLine(ds::Vector<Point>& coors)
-{
-
-    return false;
+{   
+    int slope=(coors[0].y-coors[1].y)/(coors[0].x-coors[1].x);
+    std::cout<<"slope is "<<slope<<std::endl;
+    for(int i=1;i<coors.Length();i++){
+        if((coors[i].y-coors[i-1].y)/(coors[i].x-coors[i-1].x)!=slope)return false;
+    }
+    return true;
 }
 
 template<typename T>
@@ -90,9 +94,15 @@ ds::Node<int>* GenerateList(int n)
 
 int main()
 {
-    ds::Node<int>* test=GenerateList(5);
-    Print(test);
-    Print(MiddleNode(test));
+    Point a(0,-2);
+    Point b(1,0);
+    Point c(2,2);
+    ds::Vector<Point> line;
+    line.Insert(a);
+    line.Insert(b);
+    line.Insert(c);
+    std::cout<<line<<std::endl;
+     std::cout<<IsLine(line)<<std::endl;
     
     return 0; 
 }
