@@ -16,32 +16,40 @@ int LastOccurrence(ds::da::Vector<T>& data,const T& value)
 {
     int last=-1;
     for(int i=0;i<data.Size();i++){
-        if (data[i]==value) last== i;
+        if (data[i]==value) last= i;
     }
     if(last!=-1)return last;
     return -1;
 }
 
+void printNode( ds::dn::Node<int>* root){
+    ds::dn::Node<int>* tmp=root;
+    while(tmp!=NULL){
+      std::cout<<tmp->ToString()<<" ";  
+      tmp=tmp->GetNext();
+    }
+    std::cout<<'\n';
+}
 template <typename T>
 void BubbleSort(ds::dn::Node<T>* root)
 {
     ds::dn::Node<T>* tmp=root;
     bool loopagain=true;
     while (loopagain){
-        
         loopagain=false; //idea here is that if there was a need to swap, then the system will go all over again, else it is sorted 
-
-        while(tmp->GetNext()!=NULL){
-            if(tmp->GetData()>tmp->GetNext()->GetData()){
+        printNode(tmp);
+        while(root->GetNext()!=NULL){
+            if(root->GetData()>root->GetNext()->GetData()){
                 loopagain=true;
-                T swaptmp=tmp->GetData();
-                tmp.setData(tmp->GetNext()->GetData());
-                tmp->GetNext()->setData(swaptmp);
+                T swaptmp=root->GetData();
+                root->SetData(root->GetNext()->GetData());
+                root->GetNext()->SetData(swaptmp);
+                printNode(tmp);
             }
-            tmp=tmp->GetNext();
-                if(tmp->GetNext()!=NULL){
-                    while(tmp->GetPrev!=NULL){
-                        tmp=tmp->GetPrev(); //resets nodes
+            root=root->GetNext();
+                if(root->GetNext()==NULL){
+                    while(root->GetPrev()!=NULL){
+                        root=root->GetPrev(); //resets nodes
                     }
                 }
                 
@@ -94,7 +102,7 @@ int MaxKSum(ds::da::Vector<int>& data,int k) //what is this interview question
         }
         return maxsum;
     }
-    for(int i=0;i<data.Size()-k;i++){
+    for(int i=0;i<=data.Size()-k;i++){
         currentsum=0;
         for(int j=0;j<k;j++){
             currentsum+=data[j+i];
@@ -105,12 +113,24 @@ int MaxKSum(ds::da::Vector<int>& data,int k) //what is this interview question
 
     return maxsum;
 }
-
 int main()
 {
     srand(time(NULL));
     //Test Your Functions Here
+    ds::da::Vector<int>vec;
+    vec.InsertLast(1);
+    vec.InsertLast(2);
+    vec.InsertLast(6);
+    vec.InsertLast(5);
+    vec.InsertLast(2);
+    vec.InsertLast(1);
+    std::cout<<LastOccurrence(vec,2)<<'\n'; //returns 4, correct
     std::cout<<AdjacentDuplicatesRemoval("abbaca")<<'\n'; // returns ca
+    //Test Your Functions Here
+    ds::dn::Node<int>* two=new ds::dn::Node<int>(1,NULL,new ds::dn::Node<int>(5,two,new ds::dn::Node<int>(3)));
+    ds::dn::Node<int>* root=new ds::dn::Node<int>(2,NULL,two);
+    two->SetPrev(root);  
+    BubbleSort(root);//it works
     ds::da::Vector<int> test;
     test.InsertLast(3); // 3 9 1 8 2 7
     test.InsertLast(9);
@@ -118,7 +138,7 @@ int main()
     test.InsertLast(8);
     test.InsertLast(100);
     test.InsertLast(7);
-    std::cout<<"test before:"<<std::endl<<test.ToString()<<std::endl;
-    std::cout<<MaxKSum(test,3)<<'\n';
+    std::cout<<"Vector:"<<std::endl<<test.ToString()<<std::endl;
+    std::cout<<MaxKSum(test,3)<<'\n'; //115, works
     return 0;
 }
