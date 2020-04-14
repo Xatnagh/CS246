@@ -1,0 +1,18 @@
+void tolowercase(char &A){
+  if(A>='A'&&A<='Z'){
+    A= char(A+32);
+  }
+}
+
+void lettercount(std::string word){
+Map<char,int> map;
+for(char c: word){
+  tolowercase(c);
+  if(map.contains(c)){
+    map.update(c,map.get(c)+1); //update is a function i wrote that takes a key and a value, then replaces the value with the parameter value
+  }else{
+    map.put(c,1);
+  }
+}
+map.print();
+}
