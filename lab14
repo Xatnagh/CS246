@@ -1,0 +1,20 @@
+bool RookMove(ds::Vector<char>& bd,Point& s,Point& e)
+{
+    if(s.x!=e.x && s.y!=e.y){ // if both x and y is different then  the end is diagonal, which is ILLEGAL.
+        return false;
+    }
+    bool rowOrCol;
+    (s.x==e.x)? rowOrCol=true : rowOrCol=false; // checks for whether or not the rook is going horizontally or vertically
+    rowOrCol? int unitChange=1 : int unitChange=8.
+    int start= ToBoardIndex(s);
+    int end = ToBoardIndex(e);
+    if(start>end) unitChange*=-1; // if start is greather than end, then you are not moving right or up, instead you are going in the opposite direction
+    
+    for(int i=start;i!=end;i+=unitChange){ 
+        if(db[i]=='x'){
+            return false;
+        }
+    }
+
+    return true;
+}
