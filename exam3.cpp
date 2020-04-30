@@ -32,7 +32,7 @@ ds::da::Vector<int> BoundMode(ds::da::Vector<int>& data,int upb)
 		if(indexof(tmp,data[i])!=-1){ 
 			tmp.Insert(data[i]);
 			uniquecount+=1; 
-			tmp[uniquecount+1]=1;
+			tmp.Insert(1);
 			
 		}else{
 			tmp[indexof(tmp,data[i])+1]+=1;
