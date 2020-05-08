@@ -8,10 +8,18 @@ class tree{
     branch* current;
     tree(branch* root):root(root),current(root){};
 void cd( std::string filename){
-    if(current->contains(filename)!=-1){
-        current=current->getFolders()[current->contains(filename)]; 
+    if(filename==".." && current!=root){
+        current=current->getParent();
+        return;
+    }
+    if(filename== "."){
+        return;
+    }
+
+    if(current->indexof(filename)!=-1){
+        current=current->getFolders()[current->indexof(filename)]; 
     }else{
-        cout<<"destination not found";
+        cout<<"destination not found"<<endl;
     }
 }
 void mkdir(std::string foldername){
@@ -27,7 +35,14 @@ void pwd(){
     current->pwd();
 }
 void rm(std::string filename){
-    current->rm(filename);
+    if(current->indexof(filename)!=-1){
+        if(current->getFolders()[current->indexof(filename)]->isEmpty()) 
+        {current->rm(filename);}
+        else{
+            cout<<"this folder is not empty or does not exist"<<endl;
+        }
+    }
+    
 }
 };
 

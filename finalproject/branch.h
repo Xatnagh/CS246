@@ -34,10 +34,14 @@ class branch{
     branch* getParent(){
         return parent;
     }
+    bool isEmpty(){
+        if(files.length()==0 && folders.length()==0)return true;
+        return false;
+    }
     void setParent(branch* parent){
         this->parent=parent;
     }
-    int contains(std::string filename){
+    int indexof(std::string filename){
         for(int i = 0; i < files.length();i++){
             if(files[i]->name==filename){
                 return i;
@@ -48,10 +52,10 @@ class branch{
                 return i;
             }
         }
-        return -1; // if contains return -1, then the vector does not contain the element searched
+        return -1; // if indexof return -1, then the vector does not contain the element searched
     }
     void addfile(std::string filename){
-        int contain=contains(filename);
+        int contain=indexof(filename);
         if(contain!=-1){
             std::cout<<"FILE NAME ALREADY EXIST YOU BANANA TRY LS FIRST!"<<std::endl;
             return;
@@ -62,7 +66,7 @@ class branch{
         files.push(newfile);
     }
     void addfolder(std::string filename){
-        int contain=contains(filename);
+        int contain=indexof(filename);
         if(contain!=-1){
             std::cout<<"FOLDER NAME ALREADY EXIST YOU BANANA TRY LS FIRST!"<<std::endl;
             return;
@@ -72,7 +76,7 @@ class branch{
         folders.push(newfile);
     }
     void addfile(branch* file){
-        int contain=contains(file->name);
+        int contain=indexof(file->name);
         if(contain!=-1){
             std::cout<<"FILE NAME ALREADY EXIST YOU BANANA TRY LS FIRST!"<<std::endl;
             return;
@@ -80,7 +84,7 @@ class branch{
         files.push(file);
     }
     void addfolder(branch* folder){
-        int contain=contains(folder->name);
+        int contain=indexof(folder->name);
         if(contain!=-1){
             std::cout<<"FOLDER NAME ALREADY EXIST YOU BANANA TRY LS FIRST!"<<std::endl;
             return;
@@ -111,7 +115,7 @@ class branch{
         }
     }
     void changefileName(std::string oldname,std::string newname){
-        int contain=contains(newname);
+        int contain=indexof(newname);
          if(contain==-1){
              std::cout<<"FILE IS NOT IN THIS, TRY LS FIRST"<<std::endl;
             return;
@@ -119,7 +123,7 @@ class branch{
          files[contain]->name=newname;
     }
     void changefolderName(std::string oldname,std::string newname){
-        int contain=contains(newname);
+        int contain=indexof(newname);
          if(contain==-1){
              std::cout<<"FOLDER IS NOT IN THIS, TRY LS FIRST"<<std::endl;
             return;

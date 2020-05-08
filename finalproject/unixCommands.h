@@ -5,7 +5,7 @@
 using namespace std;
 
 
-const string commandlist[5]={"ls","cd","mkdir","touch","rm"};
+const string commandlist[6]={"ls","cd","mkdir","touch","rm","quit"};
 
 
 void display(tree& shell);
@@ -26,7 +26,8 @@ void display(tree& shell){
              cout<< "INVALID COMMAND"<<endl;
             display(shell);
          }
-        if(command=="ls"){shell.ls();}
+        if(command=="ls"){shell.ls(); display(shell);}
+        if(command=="quit"){exit(0);}
         else{
             string argument;
             cin>>argument;
@@ -35,7 +36,7 @@ void display(tree& shell){
         display(shell);
 }
 bool include(string str){
-    for(int i=0;i<5;i++){
+    for(int i=0;i<6;i++){
         if(commandlist[i]==str)return true;
     }
     return false;
